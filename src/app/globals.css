@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --color-blush: #fff5f8;
+  --color-rosegold: #b76e79;
+  --color-romantic: #5a3a41;
+  --color-background: var(--color-blush);
+  --color-foreground: var(--color-romantic);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-cormorant);
+}
+
+:root {
+  --background: #fff5f8;
+  --foreground: #5a3a41;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+  background-image: radial-gradient(circle at 50% 0%, #ffffff 0%, transparent 60%);
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/30 backdrop-blur-md border border-white/40 shadow-[0_8px_32px_0_rgba(183,110,121,0.1)];
+  }
+  .glass-dark {
+    @apply bg-[var(--color-romantic)]/80 backdrop-blur-md border border-[var(--color-rosegold)]/30 text-[var(--color-blush)] shadow-[0_8px_32px_0_rgba(90,58,65,0.3)];
+  }
+  .text-glow {
+    text-shadow: 0 0 10px rgba(183, 110, 121, 0.5);
+  }
+}
