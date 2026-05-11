@@ -6,6 +6,7 @@ import confetti from "canvas-confetti";
 import { useAudio } from "@/contexts/AudioContext";
 import { AmbientBackground } from "@/components/ui/AmbientBackground";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 
 function RewardContent() {
   const { play } = useAudio();
@@ -70,12 +71,25 @@ function RewardContent() {
           >
             <motion.div
               animate={{ y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-              className="text-9xl drop-shadow-2xl"
+              transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+              className="relative w-64 h-44 rounded-xl bg-gradient-to-br from-white/90 to-pink-50/90 shadow-[0_0_40px_rgba(255,182,193,0.4)] border border-pink-100/50 flex items-center justify-center overflow-hidden"
             >
-              💌
+              {/* Envelope sides */}
+              <div className="absolute inset-0 z-10 pointer-events-none">
+                <div className="absolute top-0 left-0 w-0 h-0 border-y-[88px] border-l-[128px] border-transparent border-l-pink-100/50" />
+                <div className="absolute top-0 right-0 w-0 h-0 border-y-[88px] border-r-[128px] border-transparent border-r-pink-100/50" />
+                <div className="absolute bottom-0 left-0 w-0 h-0 border-x-[128px] border-b-[100px] border-transparent border-b-pink-50/80 drop-shadow-sm" />
+                <div className="absolute top-0 left-0 w-0 h-0 border-x-[128px] border-t-[100px] border-transparent border-t-pink-200/60 drop-shadow-md origin-top transition-transform duration-500" />
+              </div>
+
+              {/* Wax seal */}
+              <div className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+                <div className="w-16 h-16 bg-gradient-to-br from-rose-400 to-red-400 rounded-full flex items-center justify-center shadow-lg border-2 border-rose-300">
+                  <span className="text-2xl animate-pulse">❤️</span>
+                </div>
+              </div>
             </motion.div>
-            <h2 className="font-serif text-4xl text-[var(--color-romantic)] text-glow tracking-widest mt-4">
+            <h2 className="font-serif text-4xl text-[var(--color-romantic)] text-glow tracking-widest mt-6">
               Open Me
             </h2>
           </motion.div>
@@ -99,6 +113,17 @@ function RewardContent() {
                   {msg}
                 </motion.p>
               ))}
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 + (messages.length * 2), duration: 1.5 }}
+                className="mt-12 flex justify-center"
+              >
+                <MagneticButton onClick={() => window.open('https://noga-birthday.vercel.app/', '_blank')}>
+                  مفاجأتك الأخيرة
+                </MagneticButton>
+              </motion.div>
             </GlassCard>
           </motion.div>
         )}
